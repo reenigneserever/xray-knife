@@ -1,10 +1,10 @@
 package xray
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/reenigneserever/xray-knife/speedtester/cloudflare"
-	"strings"
 	"time"
 )
 
@@ -18,6 +18,7 @@ type Result struct {
 	DownloadSpeed float32  `csv:"download"` // mbps
 	UploadSpeed   float32  `csv:"upload"`   // mbps
 	IpAddrLoc     string   `csv:"location"` // IP address location
+	IpAddrCity    string   `csv:"location"` // IP address location
 }
 
 type Examiner struct {
@@ -45,6 +46,7 @@ func (e *Examiner) ExamineConfig(link string) (Result, error) {
 		Delay:      failedDelay,
 		RealIPAddr: "null",
 		IpAddrLoc:  "null",
+		IpAddrCity: "null",
 	}
 
 	parsed, err := ParseXrayConfig(link)
@@ -72,13 +74,22 @@ func (e *Examiner) ExamineConfig(link string) (Result, error) {
 	var downloadTime int64
 	var uploadTime int64
 
-	delay, _, err = MeasureDelay(instance, time.Duration(10000)*time.Millisecond, e.ShowBody, e.TestEndpoint, e.TestEndpointHttpMethod)
+	delay, _, body, err := MeasureDelay(instance, time.Duration(10000)*time.Millisecond, e.ShowBody, e.TestEndpoint, e.TestEndpointHttpMethod)
 	if err != nil {
 		//customlog.Printf(customlog.Failure, "Config didn't respond!\n\n")
 		r.Status = "failed"
 		return r, nil
 		//os.Exit(1)
 	}
+	var data map[string]string
+	json.Unmarshal(body, &data)
+	if data["clientIp"] == "" {
+		r.Status = "failed"
+		return r, nil
+	}
+	r.IpAddrLoc = data["country"]
+	r.RealIPAddr = data["clientIp"]
+	r.IpAddrCity = data["city"]
 	r.Delay = delay
 
 	defer func() {
@@ -92,22 +103,20 @@ func (e *Examiner) ExamineConfig(link string) (Result, error) {
 		return r, nil
 	}
 
-	if e.DoIPInfo {
+	if e.DoIPInfo && (r.IpAddrCity == "null" || r.IpAddrCity == "") {
 		_, body, err := CoreHTTPRequestCustom(instance, time.Duration(10000)*time.Millisecond, cloudflare.Speedtest.MakeDebugRequest())
 		if err != nil {
 			//customlog.Printf(customlog.Failure, "failed getting ip info!\n")
 			//return
 		} else {
-			for _, line := range strings.Split(string(body), "\n") {
-				s := strings.SplitN(line, "=", 2)
-				if s[0] == "ip" {
-					r.RealIPAddr = s[1]
-				} else if s[0] == "loc" {
-					r.IpAddrLoc = s[1]
-					break
-				}
+			fmt.Println("Detail Success")
+			fmt.Println(string(body))
+			var data map[string]string
+			json.Unmarshal(body, &data)
+			if r.IpAddrLoc == "" {
+				r.IpAddrLoc = data["country_code"]
 			}
-
+			r.IpAddrCity = data["city"]
 		}
 	}
 

@@ -12,17 +12,17 @@ import (
 	"time"
 )
 
-func MeasureDelay(inst *core.Instance, timeout time.Duration, showBody bool, dest string, httpMethod string) (int64, int, error) {
+func MeasureDelay(inst *core.Instance, timeout time.Duration, showBody bool, dest string, httpMethod string) (int64, int, []byte, error) {
 	start := time.Now()
 	code, body, err := CoreHTTPRequest(inst, timeout, httpMethod, dest)
 	if err != nil {
-		return -1, -1, err
+		return -1, -1, nil, err
 	}
 	//fmt.Printf("%s: %d\n", color.YellowString("Status code"), code)
 	if showBody {
 		fmt.Printf("Response body: \n%s\n", body)
 	}
-	return time.Since(start).Milliseconds(), code, nil
+	return time.Since(start).Milliseconds(), code, body, nil
 }
 
 func httpClient(inst *core.Instance, timeout time.Duration) (*http.Client, error) {
