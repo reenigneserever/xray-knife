@@ -1,9 +1,9 @@
 package scanner
 
 import (
-	"xray-knife/speedtester"
-	"xray-knife/speedtester/cloudflare"
-	"xray-knife/utils/customlog"
+	"github.com/reenigneserever/xray-knife/speedtester"
+	"github.com/reenigneserever/xray-knife/speedtester/cloudflare"
+	"github.com/reenigneserever/xray-knife/utils/customlog"
 )
 
 type CFScanner struct {

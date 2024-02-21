@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/fatih/color"
+	"github.com/reenigneserever/xray-knife/utils"
 	net2 "github.com/xtls/xray-core/common/net"
 	"github.com/xtls/xray-core/infra/conf"
 	"log"
@@ -11,7 +12,6 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
-	"xray-knife/utils"
 )
 
 func (s *Socks) Parse(configLink string) error {

@@ -4,6 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/fatih/color"
+	"github.com/reenigneserever/xray-knife/cmd/net"
+	"github.com/reenigneserever/xray-knife/utils"
+	"github.com/reenigneserever/xray-knife/utils/customlog"
+	"github.com/reenigneserever/xray-knife/xray"
 	"github.com/spf13/cobra"
 	"github.com/xtls/xray-core/core"
 	"log"
@@ -14,10 +18,6 @@ import (
 	"strconv"
 	"syscall"
 	"time"
-	"xray-knife/cmd/net"
-	"xray-knife/utils"
-	"xray-knife/utils/customlog"
-	"xray-knife/xray"
 )
 
 var (

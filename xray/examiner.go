@@ -3,9 +3,9 @@ package xray
 import (
 	"errors"
 	"fmt"
+	"github.com/reenigneserever/xray-knife/speedtester/cloudflare"
 	"strings"
 	"time"
-	"xray-knife/speedtester/cloudflare"
 )
 
 type Result struct {

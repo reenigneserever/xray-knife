@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/fatih/color"
+	"github.com/reenigneserever/xray-knife/utils"
 	"github.com/xtls/xray-core/infra/conf"
 	"net"
 	"net/url"
 	"strings"
-	"xray-knife/utils"
 )
 
 func method1(v *Vmess, link string) error {

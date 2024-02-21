@@ -2,12 +2,12 @@ package net
 
 import (
 	"fmt"
+	"github.com/reenigneserever/xray-knife/network"
+	"github.com/reenigneserever/xray-knife/utils/customlog"
+	"github.com/reenigneserever/xray-knife/xray"
 	"github.com/spf13/cobra"
 	"net"
 	"os"
-	"xray-knife/network"
-	"xray-knife/utils/customlog"
-	"xray-knife/xray"
 )
 
 var (

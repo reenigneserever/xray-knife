@@ -1,10 +1,10 @@
 package scan
 
 import (
+	"github.com/reenigneserever/xray-knife/utils"
+	"github.com/reenigneserever/xray-knife/utils/customlog"
 	"os"
 	"strings"
-	"xray-knife/utils"
-	"xray-knife/utils/customlog"
 
 	"github.com/spf13/cobra"
 )

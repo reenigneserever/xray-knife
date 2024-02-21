@@ -1,11 +1,11 @@
 package net
 
 import (
+	"github.com/reenigneserever/xray-knife/utils/customlog"
+	"github.com/reenigneserever/xray-knife/xray"
 	"net"
 	"os"
 	"time"
-	"xray-knife/utils/customlog"
-	"xray-knife/xray"
 
 	"github.com/spf13/cobra"
 )

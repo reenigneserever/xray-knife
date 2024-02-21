@@ -1,12 +1,12 @@
 package xray
 
 import (
+	"github.com/reenigneserever/xray-knife/utils"
+	"github.com/reenigneserever/xray-knife/utils/customlog"
 	"io"
 	"log"
 	"net/url"
 	"strings"
-	"xray-knife/utils"
-	"xray-knife/utils/customlog"
 )
 
 // TODO: Make a database to store subscriptions

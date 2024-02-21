@@ -4,11 +4,11 @@ import (
 	"bufio"
 	"encoding/base64"
 	"fmt"
+	"github.com/reenigneserever/xray-knife/utils/customlog"
 	"os"
 	"os/exec"
 	"runtime"
 	"strings"
-	"xray-knife/utils/customlog"
 )
 
 func Base64Decode(b64 string) ([]byte, error) {

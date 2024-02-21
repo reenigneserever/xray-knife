@@ -2,12 +2,12 @@ package subs
 
 import (
 	"fmt"
+	"github.com/reenigneserever/xray-knife/utils"
+	"github.com/reenigneserever/xray-knife/utils/customlog"
+	"github.com/reenigneserever/xray-knife/xray"
 	"github.com/spf13/cobra"
 	"os"
 	"strings"
-	"xray-knife/utils"
-	"xray-knife/utils/customlog"
-	"xray-knife/xray"
 )
 
 var (

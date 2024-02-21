@@ -1,13 +1,13 @@
 package cmd
 
 import (
+	"github.com/reenigneserever/xray-knife/cmd/net"
+	"github.com/reenigneserever/xray-knife/cmd/parse"
+	"github.com/reenigneserever/xray-knife/cmd/proxy"
+	"github.com/reenigneserever/xray-knife/cmd/scan"
+	"github.com/reenigneserever/xray-knife/cmd/subs"
 	"github.com/spf13/cobra"
 	"os"
-	"xray-knife/cmd/net"
-	"xray-knife/cmd/parse"
-	"xray-knife/cmd/proxy"
-	"xray-knife/cmd/scan"
-	"xray-knife/cmd/subs"
 )
 
 // rootCmd represents the base command when called without any subcommands

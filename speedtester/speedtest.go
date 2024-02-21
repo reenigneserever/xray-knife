@@ -2,12 +2,12 @@ package speedtester
 
 import (
 	"fmt"
+	"github.com/reenigneserever/xray-knife/network/customtls"
+	"github.com/reenigneserever/xray-knife/speedtester/custom"
 	"io"
 	"net"
 	"net/http"
 	"time"
-	"xray-knife/network/customtls"
-	"xray-knife/speedtester/custom"
 )
 
 type SpeedTester struct {
