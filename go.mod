@@ -1,4 +1,4 @@
-module xray-knife
+module github.com/reenigneserever/xray-knife
 
 go 1.21.4
 
